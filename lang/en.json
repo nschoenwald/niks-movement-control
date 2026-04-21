@@ -1,0 +1,32 @@
+{
+  "NMC.Title": "Nik's Movement Control",
+
+  "NMC.FreeMovement": "Free Movement",
+  "NMC.NoMovement": "No Movement",
+  "NMC.CombatTurnMovement": "Combat Turn",
+
+  "NMC.MovementChanged": "Movement mode changed: ",
+  "NMC.NormalMovementLimited": "Movement is currently restricted by the GM.",
+  "NMC.CombatTurnMovementLimited": "Movement is restricted to the active combatant's turn.",
+
+  "NMC.ToggleMovement": "Toggle Movement Restriction",
+
+  "NMC.Keybinding.ToggleMovement": "Cycle Movement Mode",
+
+  "NMC.Settings.NotifyOnChange.Name": "Notify on Movement Change",
+  "NMC.Settings.NotifyOnChange.Hint": "Display a notification to players when the movement mode changes.",
+
+  "NMC.Settings.MovementOnCombatStart.Name": "Movement on Combat Start",
+  "NMC.Settings.MovementOnCombatStart.Hint": "Automatically set the movement mode when combat starts.",
+
+  "NMC.Settings.MovementOnCombatEnd.Name": "Movement on Combat End",
+  "NMC.Settings.MovementOnCombatEnd.Hint": "Automatically set the movement mode when combat ends.",
+
+  "NMC.Settings.AllowOwnedCombat.Name": "Allow Owned Tokens in Combat Turn",
+  "NMC.Settings.AllowOwnedCombat.Hint": "When in Combat Turn mode, allow all tokens owned by the same player(s) as the active combatant to move (e.g. familiars, mounts).",
+
+  "NMC.Settings.DefaultMovement.Name": "Default Movement on Load",
+  "NMC.Settings.DefaultMovement.Hint": "The movement mode to set when the world is first loaded.",
+
+  "NMC.Settings.Ignore": "Don't Change"
+}
