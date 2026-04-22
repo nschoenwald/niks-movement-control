@@ -63,14 +63,19 @@ function registerSettings() {
         type: String
     });
 
-    // Notify players on movement change
-    game.settings.register(MODULE_ID, "notify-on-change", {
-        name: i18n("NMC.Settings.NotifyOnChange.Name"),
-        hint: i18n("NMC.Settings.NotifyOnChange.Hint"),
+    // Default movement mode on world load
+    game.settings.register(MODULE_ID, "default-movement", {
+        name: i18n("NMC.Settings.DefaultMovement.Name"),
+        hint: i18n("NMC.Settings.DefaultMovement.Hint"),
         scope: "world",
         config: true,
-        default: true,
-        type: Boolean
+        default: MOVEMENT_TYPE.NONE,
+        type: String,
+        choices: {
+            free: i18n("NMC.FreeMovement"),
+            none: i18n("NMC.NoMovement"),
+            combat: i18n("NMC.CombatTurnMovement")
+        }
     });
 
     // Movement mode when combat starts
@@ -105,19 +110,14 @@ function registerSettings() {
         type: Boolean
     });
 
-    // Default movement mode on world load
-    game.settings.register(MODULE_ID, "default-movement", {
-        name: i18n("NMC.Settings.DefaultMovement.Name"),
-        hint: i18n("NMC.Settings.DefaultMovement.Hint"),
+    // Notify players on movement change
+    game.settings.register(MODULE_ID, "notify-on-change", {
+        name: i18n("NMC.Settings.NotifyOnChange.Name"),
+        hint: i18n("NMC.Settings.NotifyOnChange.Hint"),
         scope: "world",
         config: true,
-        default: MOVEMENT_TYPE.NONE,
-        type: String,
-        choices: {
-            free: i18n("NMC.FreeMovement"),
-            none: i18n("NMC.NoMovement"),
-            combat: i18n("NMC.CombatTurnMovement")
-        }
+        default: true,
+        type: Boolean
     });
 
     // Register keybinding to cycle movement mode
@@ -229,14 +229,17 @@ function cycleMovementMode() {
 /**
  * Change the global movement mode for all players.
  * @param {string} movement - The new movement mode
+ * @param {boolean} notify - Whether to display a notification
  */
-async function changeGlobalMovement(movement) {
+async function changeGlobalMovement(movement, notify = true) {
     if (!Object.values(MOVEMENT_TYPE).includes(movement)) return;
 
     log("Changing global movement to:", movement);
     await game.settings.set(MODULE_ID, "movement", movement);
 
-    displayNotification(movement);
+    if (notify) {
+        displayNotification(movement);
+    }
 
     // Re-render scene controls so the button icon updates
     ui.controls.render({ force: true, reset: true });
@@ -306,7 +309,7 @@ Hooks.on("ready", () => {
     // Apply default movement mode on world load (primary GM only)
     if (isPrimaryGM()) {
         const defaultMovement = setting("default-movement");
-        changeGlobalMovement(defaultMovement);
+        changeGlobalMovement(defaultMovement, false);
     }
 });
 
@@ -322,8 +325,6 @@ Hooks.on("preUpdateToken", (document, update, options, userId) => {
 
 // Add cycling button to token controls
 Hooks.on("getSceneControlButtons", (controls) => {
-    if (!game.user.isGM) return;
-
     const tokenControls = controls.tokens;
     if (!tokenControls) return;
 
@@ -331,12 +332,17 @@ Hooks.on("getSceneControlButtons", (controls) => {
 
     tokenControls.tools.nmcToggleMovement = {
         name: "nmcToggleMovement",
-        title: "NMC.ToggleMovement",
+        title: game.user.isGM ? "NMC.ToggleMovement" : i18n(MOVEMENT_LABELS[currentMovement] || MOVEMENT_LABELS[MOVEMENT_TYPE.FREE]),
         icon: MOVEMENT_ICONS[currentMovement] || MOVEMENT_ICONS[MOVEMENT_TYPE.FREE],
         toggle: false,
         button: true,
-        onChange: () => {
-            cycleMovementMode();
+        onClick: () => {
+            if (game.user.isGM) {
+                cycleMovementMode();
+            } else {
+                const label = i18n(MOVEMENT_LABELS[currentMovement] || MOVEMENT_LABELS[MOVEMENT_TYPE.FREE]);
+                ui.notifications.info(i18n("NMC.MovementChanged") + label);
+            }
         }
     };
 });
