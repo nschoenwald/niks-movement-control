@@ -120,6 +120,16 @@ function registerSettings() {
         type: Boolean
     });
 
+    // Warn player when movement is blocked
+    game.settings.register(MODULE_ID, "warn-on-block", {
+        name: i18n("NMC.Settings.WarnOnBlock.Name"),
+        hint: i18n("NMC.Settings.WarnOnBlock.Hint"),
+        scope: "world",
+        config: true,
+        default: true,
+        type: Boolean
+    });
+
     // Register keybinding to cycle movement mode
     game.keybindings.register(MODULE_ID, "toggle-movement", {
         name: "NMC.Keybinding.ToggleMovement",
@@ -185,11 +195,8 @@ function allowMovement(tokenDoc, notify = true) {
 
     if (movement === MOVEMENT_TYPE.NONE ||
         (movement === MOVEMENT_TYPE.COMBAT && blockCombat(tokenDoc))) {
-        if (notify && !tokenDoc._nmcMovementNotified) {
-            const msgKey = movement === MOVEMENT_TYPE.COMBAT
-                ? "NMC.CombatTurnMovementLimited"
-                : "NMC.NormalMovementLimited";
-            ui.notifications.warn(i18n(msgKey));
+        if (notify && setting("warn-on-block") && !tokenDoc._nmcMovementNotified) {
+            ui.notifications.warn(i18n("NMC.MovementLimited"));
             tokenDoc._nmcMovementNotified = true;
             setTimeout(() => {
                 delete tokenDoc._nmcMovementNotified;
@@ -264,7 +271,7 @@ function displayNotification(movement) {
 function patchTokenCanDrag() {
     const wrapperFn = function (wrapped, ...args) {
         const result = wrapped(...args);
-        return allowMovement(this.document, false) ? result : false;
+        return allowMovement(this.document, true) ? result : false;
     };
 
     if (game.modules.get("lib-wrapper")?.active) {
@@ -308,8 +315,17 @@ Hooks.on("ready", () => {
 
     // Apply default movement mode on world load (primary GM only)
     if (isPrimaryGM()) {
-        const defaultMovement = setting("default-movement");
-        changeGlobalMovement(defaultMovement, false);
+        const activeCombat = game.combats?.active?.started;
+        if (activeCombat) {
+            // Combat is active — use the combat movement setting instead of the default
+            const movementOnCombat = setting("movement-on-combat-start");
+            if (movementOnCombat !== "ignore") {
+                changeGlobalMovement(movementOnCombat, false);
+            }
+        } else {
+            const defaultMovement = setting("default-movement");
+            changeGlobalMovement(defaultMovement, false);
+        }
     }
 });
 

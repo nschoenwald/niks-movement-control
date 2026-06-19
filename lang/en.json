@@ -6,8 +6,7 @@
   "NMC.CombatTurnMovement": "Combat Turn",
 
   "NMC.MovementChanged": "Movement mode changed: ",
-  "NMC.NormalMovementLimited": "Movement is currently restricted by the GM.",
-  "NMC.CombatTurnMovementLimited": "Movement is restricted to the active combatant's turn.",
+  "NMC.MovementLimited": "Movement is currently restricted via Nik's Movement Control.",
 
   "NMC.ToggleMovement": "Toggle Movement Restriction",
 
@@ -15,6 +14,9 @@
 
   "NMC.Settings.NotifyOnChange.Name": "Notify on Movement Change",
   "NMC.Settings.NotifyOnChange.Hint": "Display a notification to players when the movement mode changes.",
+
+  "NMC.Settings.WarnOnBlock.Name": "Warn on Movement Block",
+  "NMC.Settings.WarnOnBlock.Hint": "Display a warning to the player when they attempt to move a token while movement is locked.",
 
   "NMC.Settings.MovementOnCombatStart.Name": "Movement on Combat Start",
   "NMC.Settings.MovementOnCombatStart.Hint": "Automatically set the movement mode when combat starts.",
