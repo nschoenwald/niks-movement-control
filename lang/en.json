@@ -6,9 +6,11 @@
   "NMC.CombatTurnMovement": "Combat Turn",
 
   "NMC.MovementChanged": "Movement mode changed: ",
+  "NMC.CurrentMovement": "Current movement mode: ",
   "NMC.MovementLimited": "Movement is currently restricted via Nik's Movement Control.",
 
   "NMC.ToggleMovement": "Toggle Movement Restriction",
+  "NMC.NoActiveCombat": "(no active combat)",
 
   "NMC.Keybinding.ToggleMovement": "Cycle Movement Mode",
 
@@ -29,6 +31,12 @@
 
   "NMC.Settings.DefaultMovement.Name": "Default Movement on Load",
   "NMC.Settings.DefaultMovement.Hint": "The movement mode to set when the world is first loaded.",
+
+  "NMC.Settings.PlayerButton.Name": "Player Toolbar Button",
+  "NMC.Settings.PlayerButton.Hint": "How the movement mode button appears for players. Button: shows the current mode and announces it when clicked. Indicator: only shows the current mode (no click action). Hidden: no button for players.",
+  "NMC.Settings.PlayerButton.Button": "Button",
+  "NMC.Settings.PlayerButton.Indicator": "Indicator only",
+  "NMC.Settings.PlayerButton.Hidden": "Hidden",
 
   "NMC.Settings.Ignore": "Don't Change"
 }

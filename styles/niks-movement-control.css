@@ -1,0 +1,11 @@
+/* Nik's Movement Control — toolbar button states (theme-agnostic: no colors) */
+
+/* Combat Turn mode selected, but no combat is running: dim the button */
+#scene-controls .control.tool.nmc-inactive {
+    opacity: 0.5;
+}
+
+/* Players' indicator-only button: not clickable-looking */
+#scene-controls .control.tool.nmc-indicator {
+    cursor: default;
+}
