@@ -12,7 +12,7 @@ jobs:
     
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Extract Tag Version
         id: get_version
@@ -41,8 +41,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish to Foundry VTT
-        uses: cs96and/FoundryVTT-release-package@v1
-        with:
-          package-token: ${{ secrets.FOUNDRY_PACKAGE_TOKEN }}
-          manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/module.json
