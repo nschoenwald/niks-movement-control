@@ -1,7 +1,10 @@
-# Markdown: ignore all, except the docs shipped with the module
+# macOS
+.DS_Store
+
+# Release archives
+*.zip
+
+# Markdown: ignore all, except the docs published with the repo
 *.md
 !README.md
 !CHANGELOG.md
-
-# macOS
-.DS_Store
