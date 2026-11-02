@@ -77,6 +77,12 @@ When the GM changes the movement mode, all connected players receive a notificat
 - **Primary GM guard**: Combat automation hooks only fire once when multiple GMs are connected (uses `game.user.isActiveGM`).
 - **Socket-based notifications**: Movement change notifications are broadcast to all players via socket and shown in each player's own language.
 
+## Languages
+
+English, Deutsch, Français, Español, Italiano, Português (Brasil), 日本語, Polski and Čeština.
+
+All translations were written with AI help and may contain mistakes. Corrections are welcome as an issue or pull request.
+
 ## Credits
 
 Based on [Monk's TokenBar](https://github.com/ironmonk108/monks-tokenbar) by IronMonk, licensed under GPL-3.0.

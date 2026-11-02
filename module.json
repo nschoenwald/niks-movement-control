@@ -2,7 +2,7 @@
   "id": "niks-movement-control",
   "title": "Nik's Movement Control",
   "description": "<p>Simple movement restriction module for GMs. Toggle between Free Movement and No Movement for players via token controls. Automatically sets movement modes on combat start/end.</p>",
-  "version": "14.3.0",
+  "version": "14.4.0",
   "authors": [
     {
       "name": "nikolai.sw",
@@ -33,8 +33,47 @@
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json",
-      "flags": {}
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "lang/it.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "lang/ja.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    },
+    {
+      "lang": "cs",
+      "name": "Čeština",
+      "path": "lang/cs.json"
     }
   ],
   "url": "https://github.com/nschoenwald/niks-movement-control",

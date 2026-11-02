@@ -1,5 +1,9 @@
 # Changelog
 
+## 14.4.0
+
+- The module is now available in German, French, Spanish, Italian, Brazilian Portuguese, Japanese, Polish and Czech.
+
 ## 14.3.0
 
 ### Fixed
