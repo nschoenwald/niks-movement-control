@@ -91,6 +91,9 @@ Based on [Monk's TokenBar](https://github.com/ironmonk108/monks-tokenbar) by Iro
 
 ## Modules by Nik
 
+### 🧩 Nik's Tweaks
+* **[Nik's Foundry Tweaks](https://github.com/nschoenwald/niks-foundry-tweaks)** – System-independent quality-of-life tweaks and the shared settings dashboard of Nik's Tweaks modules.
+
 ### 🎲 D&D 5e Specific
 * **[Nik's DnD5e Tweaks](https://github.com/nschoenwald/niks-dnd5e-tweaks)** – Consolidated collection of quality-of-life enhancements and combat automation tweaks for DnD5e.
 
